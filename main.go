@@ -1,13 +1,13 @@
 package main
 
 import (
-	"bytes"
 	"errors"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"time"
 )
@@ -76,7 +76,7 @@ func checkingFile(sourcePath, replicaPath string, lg *log.Logger) ([]byte, error
 		return nil, err
 	}
 
-	if bytes.Equal(dataSource, dataReplica) {
+	if reflect.DeepEqual(dataSource, dataReplica) {
 		lg.Printf("the files are equal, data:%s", dataSource)
 	}
 
